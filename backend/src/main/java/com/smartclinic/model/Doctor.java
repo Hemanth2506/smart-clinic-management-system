@@ -1,4 +1,5 @@
 package com.smartclinic.model;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import java.util.*;
@@ -7,7 +8,7 @@ public class Doctor {
  @Id @GeneratedValue(strategy=GenerationType.IDENTITY) private Long id;
  @NotBlank private String name;
  @Email @NotBlank @Column(unique=true) private String email;
- @NotBlank private String password;
+ @JsonProperty(access=JsonProperty.Access.WRITE_ONLY) @NotBlank private String password;
  @NotBlank private String specialty;
  @ElementCollection(fetch=FetchType.EAGER) @CollectionTable(name="doctor_times",joinColumns=@JoinColumn(name="doctor_id")) @Column(name="available_time") private List<String> availableTimes=new ArrayList<>();
  public Long getId(){return id;} public String getName(){return name;} public void setName(String v){name=v;}
