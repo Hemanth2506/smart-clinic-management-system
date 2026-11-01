@@ -25,7 +25,7 @@ public class DoctorService {
     }
 
     public List<String> availableSlots(Long doctorId, LocalDate date) {
-        return availability.findByDoctorIdAndAvailableDate(doctorId, date).stream()
+        return availability.findByDoctor_IdAndAvailableDate(doctorId, date).stream()
                 .map(slot -> slot.getStartTime() + " - " + slot.getEndTime())
                 .toList();
     }
